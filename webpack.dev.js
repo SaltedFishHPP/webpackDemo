@@ -10,7 +10,7 @@ module.exports = merge(common, {
     hot: true
   },
   plugins: [
-    new webpack.NamedModulesPlugin(),
+    new webpack.NamedModulesPlugin(), // 查看要修补(patch)的依赖-查看更改的文件
     new webpack.HotModuleReplacementPlugin()
  ],
 });
