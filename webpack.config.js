@@ -2,6 +2,10 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const webpack = require('webpack');
+<<<<<<< HEAD
+=======
+
+>>>>>>> a5809de6f160272521c6d7db49db46b813e9b664
 module.exports = {
     entry: {
         app: './src/index.js'
