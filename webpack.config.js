@@ -2,10 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const webpack = require('webpack');
-<<<<<<< HEAD
-=======
 
->>>>>>> a5809de6f160272521c6d7db49db46b813e9b664
 module.exports = {
     entry: {
         app: './src/index.js'
@@ -24,6 +21,8 @@ module.exports = {
         new HtmlWebpackPlugin({
            title: 'Output Management'
         }),
+        new webpack.NamedModulesPlugin(), // 查看要修补(patch)的依赖-查看更改的文件
+        new webpack.HotModuleReplacementPlugin()
     ],
     output: {
         filename: '[name].bundle.js',

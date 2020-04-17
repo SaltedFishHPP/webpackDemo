@@ -1,66 +1,60 @@
-import _ from 'lodash';
 import printMe from './print.js';
-<<<<<<< HEAD
-function component() {
-    var element = document.createElement('div');
-    var btn = document.createElement('button');
-    // Lodash（目前通过一个 script 脚本引入）对于执行这一行是必需的
-    element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-
-    btn.innerHTML = 'Click me and check the console!!!!!!';
-=======
 import './styles.css';
 import { cube } from './math.js';
-function component() {
-    var element = document.createElement('div');
+function getComponent() {
+    var element1 = document.createElement('div');
     var btn = document.createElement('button');
 
-    element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+    element1.innerHTML = _.join(['Hello', 'webpack'], ' ');
 
     btn.innerHTML = 'Click me and check the console';
->>>>>>> a5809de6f160272521c6d7db49db46b813e9b664
     btn.onclick = printMe;
 
-    element.appendChild(btn);
+    element1.appendChild(btn);
 
-<<<<<<< HEAD
-    return element;
-  }
-  
-  // document.body.appendChild(component());
-  let element = component(); // 当 print.js 改变导致页面重新渲染时，重新获取渲染的元素
-  document.body.appendChild(element);
-
-  if (module.hot) {
-    module.hot.accept('./print.js', function() {
-      console.log('Accepting the updated printMe module!');
-      //  printMe();
-      document.body.removeChild(element);
-      element = component(); // 重新渲染页面后，component 更新 click 事件处理
-      document.body.appendChild(element);
-   })
- }
-=======
 
     var element2 = document.createElement('pre');
-    element.innerHTML = [
+    element2.innerHTML = [
         'Hello webpack!',
         '5 cubed is equal to ' + cube(5)
     ].join('\n\n');
 
 
-    return element2;
+    // return element2;
+
+
+    // 注释中使用了 webpackChunkName。使 bundle 被命名为 lodash.bundle.js
+    return import(/* webpackChunkName: "lodash" */ 'lodash').then(_ => {
+        var element = document.createElement('div');
+
+        element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+
+        return element;
+    
+    }).catch(error => 'An error occurred while loading the component');
+
+    // 简化上面代码
+    // var element = document.createElement('div');
+    // const _ = await import(/* webpackChunkName: "lodash" */ 'lodash');
+
+    // element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+
+    // return element;
+
 }
 
-let element = component(); // 当 print.js 改变导致页面重新渲染时，重新获取渲染的元素
-document.body.appendChild(element);
+getComponent().then(component => {
+    document.body.appendChild(component);
+})
+
+// var domShow = component(); // 当 print.js 改变导致页面重新渲染时，重新获取渲染的元素
+// document.body.appendChild(domShow);
 
 if (module.hot) {
     module.hot.accept('./print.js', function () {
         console.log('热模块的内容');
-        document.body.removeChild(element);
-        element = component(); // 重新渲染页面后，component 更新 click 事件处理
-        document.body.appendChild(element);
+        document.body.removeChild(domShow);
+        domShow = component(); // 重新渲染页面后，component 更新 click 事件处理
+        document.body.appendChild(domShow);
     })
 }
->>>>>>> a5809de6f160272521c6d7db49db46b813e9b664
