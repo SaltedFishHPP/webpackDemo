@@ -3,13 +3,13 @@ const path = require('path');
 const webpack = require('webpack');
 module.exports = {
   entry: {
-    app: './src/index.js',
+    app: './src/vue.js',
   },
   plugins: [
 
   ],
   output: {
-    filename: '[name].bundle.js',
+    filename: '[name].[chunkhash].js',
     chunkFilename: '[name].bundle.js', // 决定非入口 chunk 的名称
     path: path.resolve(__dirname, 'dist')
   },
@@ -37,15 +37,6 @@ module.exports = {
     ]
   },
   optimization: {
-    // 防止生成的bundle引入的模块重复
-    splitChunks: {
-      cacheGroups: { // 自定义组
-          commons: {
-              name: 'commons', // 公共部分输出文件的名称
-              chunks: 'initial', // 模式 “initial”, “async” 和 “all” -- 优化时只选择初始的chunks，所需要的chunks 还是所有chunks 。
-              minChunks: 2 // 至少有几个入口相同时判定其为重复
-          }
-      }
-    }
+
   }
 };

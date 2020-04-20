@@ -15,6 +15,21 @@ module.exports = merge(common, {
         }),
     ],
     optimization: {
+        // 防止生成的bundle引入的模块重复
+        splitChunks: {
+            cacheGroups: { // 自定义组
+                commons: {
+                    name: 'commons', // 公共部分输出文件的名称
+                    chunks: 'initial', // 模式 “initial”, “async” 和 “all” -- 优化时只选择初始的chunks，所需要的chunks 还是所有chunks 。
+                    minChunks: 2 // 至少有几个入口相同时判定其为重复
+                },
+                commons: {
+                    name: 'manifest', // 公共部分输出文件的名称
+                    chunks: 'initial', // 模式 “initial”, “async” 和 “all” -- 优化时只选择初始的chunks，所需要的chunks 还是所有chunks 。
+                    minChunks: 2 // 至少有几个入口相同时判定其为重复
+                }
+            },
+        },
         minimize: true,
         minimizer: [new TerserPlugin({sourceMap: true})],
     },

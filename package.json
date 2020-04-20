@@ -34,6 +34,7 @@
     "es6-promise": "^4.2.8",
     "lodash": "^4.17.15",
     "terser-webpack-plugin": "^2.3.5",
-    "uglifyjs-webpack-plugin": "^2.2.0"
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "vue": "^2.6.11"
   }
 }
