@@ -5,7 +5,7 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin') // 添加vue-loader
 
 module.exports = {
   entry: {
-    app: './src/vue.js',
+    app: './src/webpack/index.js',
   },
   plugins: [
     new VueLoaderPlugin() // 引入vue-loader
@@ -37,50 +37,31 @@ module.exports = {
           test: /\.css$/, // 根据正则表达式，来确定应该查找哪些文件
           use: [ // 将其提供给指定的 loader (style-loader 和 css-loader)
               'style-loader',
-              'css-loader',
-              'vue-style-loader'
-          ]
+              
+              'css-loader'
+              // {
+              //   loader: 'css-loader',
+              //   options: {
+              //     // 开启 CSS Modules
+              //     modules: true,
+              //     // 自定义生成的类名
+              //     // localIdentName: '[local]_[hash:base64:8]'
+              //   }
+              // },
+          ],
       },
-      {
-          test: /\.scss$/,
-          use: [
-            'vue-style-loader',
-            'css-loader',
-            {
-              loader: 'sass-loader',
-              options: {
-                // 你也可以从一个文件读取，例如 `variables.scss`
-                // 如果 sass-loader 版本 < 8，这里使用 `data` 字段
-                prependData: `$color: red;`
-              }
-            }
-          ]
-      },
-      {
-          test: /\.less$/,
-          use: [
-            'vue-style-loader',
-            'css-loader',
-            'less-loader'
-          ]
-      },
-      {
-        test: /\.sass$/,
-        use: [
-          'vue-style-loader',
-          'css-loader',
-          {
-            loader: 'sass-loader',
-            options: {
-              indentedSyntax: true,
-              // sass-loader version >= 8
-              sassOptions: {
-                indentedSyntax: true
-              }
-            }
-          }
-        ]
-      },
+      // {
+      //     test: /\.less$/,
+      //     use: [
+      //       'less-loader',
+      //       'vue-style-loader',
+      //       {
+      //         loader: 'css-loader',
+      //         options: { modules: true }
+      //       },
+            
+      //     ]
+      // },
       {
           test: /\.(png|svg|jpg|gif)$/,
           use: [

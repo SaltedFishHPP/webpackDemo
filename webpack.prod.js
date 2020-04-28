@@ -3,6 +3,7 @@ const merge = require('webpack-merge');
 const TerserPlugin = require('terser-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const common = require('./webpack.common.js');
 
@@ -13,6 +14,9 @@ module.exports = merge(common, {
         new HtmlWebpackPlugin({
             title: 'Production'
         }),
+        new MiniCssExtractPlugin({
+            filename: 'style.css'
+        })
     ],
     optimization: {
         // 防止生成的bundle引入的模块重复
@@ -33,4 +37,17 @@ module.exports = merge(common, {
         minimize: true,
         minimizer: [new TerserPlugin({sourceMap: true})],
     },
+    module:{
+        rules: [
+            {
+                test: /\.css$/,
+                use: [
+                  process.env.NODE_ENV !== 'production'
+                    ? 'vue-style-loader'
+                    : MiniCssExtractPlugin.loader,
+                  'css-loader'
+                ]
+            }
+        ]
+    }
 });
