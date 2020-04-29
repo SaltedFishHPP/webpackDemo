@@ -1,6 +1,5 @@
 // 公用配置
 const path = require('path');
-const webpack = require('webpack');
 const VueLoaderPlugin = require('vue-loader/lib/plugin') // 添加vue-loader
 
 module.exports = {
@@ -10,11 +9,10 @@ module.exports = {
   plugins: [
     new VueLoaderPlugin() // 引入vue-loader
   ],
-  mode: 'production',
   output: {
-    filename: '[name].[chunkhash].js',
+    filename: process.env.NODE_ENV === 'production' ? '[name].[chunkhash].js' : '[name].[hash].js', // chunkhash不可与热更新一起使用
     chunkFilename: '[name].bundle.js', // 决定非入口 chunk 的名称
-    path: path.resolve(__dirname, 'dist')
+    path: process.env.NODE_ENV === 'production' ? path.resolve(__dirname, 'dist') : path.resolve(__dirname,'../')
   },
   module: {
     rules: [
@@ -33,35 +31,6 @@ module.exports = {
           !/\.vue\.js/.test(file)
         )
       },
-      {
-          test: /\.css$/, // 根据正则表达式，来确定应该查找哪些文件
-          use: [ // 将其提供给指定的 loader (style-loader 和 css-loader)
-              'style-loader',
-              
-              'css-loader'
-              // {
-              //   loader: 'css-loader',
-              //   options: {
-              //     // 开启 CSS Modules
-              //     modules: true,
-              //     // 自定义生成的类名
-              //     // localIdentName: '[local]_[hash:base64:8]'
-              //   }
-              // },
-          ],
-      },
-      // {
-      //     test: /\.less$/,
-      //     use: [
-      //       'less-loader',
-      //       'vue-style-loader',
-      //       {
-      //         loader: 'css-loader',
-      //         options: { modules: true }
-      //       },
-            
-      //     ]
-      // },
       {
           test: /\.(png|svg|jpg|gif)$/,
           use: [

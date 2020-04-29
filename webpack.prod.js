@@ -39,11 +39,21 @@ module.exports = merge(common, {
     },
     module:{
         rules: [
+            // 提取css
             {
                 test: /\.css$/,
                 use: [
                   process.env.NODE_ENV !== 'production'
                     ? 'vue-style-loader'
+                    : MiniCssExtractPlugin.loader,
+                  'css-loader'
+                ]
+            },
+            {
+                test: /\.less$/,
+                use: [
+                  process.env.NODE_ENV !== 'production'
+                    ? ('less-loader','vue-style-loader')
                     : MiniCssExtractPlugin.loader,
                   'css-loader'
                 ]

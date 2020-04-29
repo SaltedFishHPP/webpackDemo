@@ -5,7 +5,7 @@ const webpack = require('webpack');
 
 module.exports = {
     entry: {
-        app: './src/index.js'
+        app: './src/webpack/index.js',
     },
     // 开发环境中输出报错
     devtool: 'inline-source-map',
