@@ -1,5 +1,5 @@
 import Vue from 'vue';
-// import App from './App';
+import App from './App.vue';
 
 
 // // export const vue =new Vue({
@@ -13,6 +13,7 @@ import Vue from 'vue';
 //     render: h => h(App),
 //   });
 // const Vues = require('vue')
-new Vue({
-    el: '#app'
-})
+export const vue =new Vue({
+    render: h => h(App),
+  })
+  

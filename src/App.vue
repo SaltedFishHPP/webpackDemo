@@ -4,8 +4,8 @@
     </div>
 </template>
 <script>
-module.exports= {
-// export default {
+// module.exports= {
+export default {
     components: {},
     props: {},
     data() {
@@ -18,8 +18,8 @@ module.exports= {
     created() {},
     mounted() {},
     methods: {},
-// };
-}
+};
+// }
 </script>
 <style lang="less">
 .container{

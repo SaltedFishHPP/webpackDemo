@@ -27,7 +27,6 @@
     "csv-loader": "^3.0.2",
     "eslint": "^6.8.0",
     "eslint-loader": "^4.0.2",
-    "eslint-plugin-vue": "^6.2.2",
     "file-loader": "^6.0.0",
     "html-webpack-plugin": "^4.2.0",
     "less": "^3.11.1",
@@ -47,7 +46,6 @@
     "xml-loader": "^1.2.1"
   },
   "dependencies": {
-    "babel-loader": "^7.1.5",
     "babel-minify-webpack-plugin": "^0.3.1",
     "es6-promise": "^4.2.8",
     "lodash": "^4.17.15",
