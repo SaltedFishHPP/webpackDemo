@@ -25,12 +25,14 @@ module.exports = {
         "module": true,
         "process": true,
         "__dirname": true,
+        "vue": true,
+        "require": true
     },
     "plugins": [
         "vue"
     ],
     "rules": {
-        "quotes": ["error", "double"],
+        // "quotes": ["error", "double"],
         "no-unused-vars": [2, { 
             // 允许声明未使用变量
             "vars": "local",

@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div id="app" class="container">
         <p>{{ greeting }} world!</p>
     </div>
 </template>
@@ -10,7 +10,7 @@ module.exports= {
     props: {},
     data() {
         return {
-            greeting: 'Hello'
+            greeting: "Hello"
         };
     },
     computed: {},

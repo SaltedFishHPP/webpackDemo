@@ -4,7 +4,7 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin') // 添加vue-loader
 
 module.exports = {
   entry: {
-    app: './src/webpack/index.js',
+    app: './src/main.js',
   },
   plugins: [
     new VueLoaderPlugin() // 引入vue-loader
@@ -34,6 +34,7 @@ module.exports = {
         //   !/\.vue\.js/.test(file)
         // )
       },
+
       {
           test: /\.(png|svg|jpg|gif)$/,
           use: [
