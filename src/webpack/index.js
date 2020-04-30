@@ -1,22 +1,28 @@
-// import printMe from './print.js';
+import printMe from "./print.js";
 // import './styles.css';
-// import _ from 'lodash'
-// import { cube } from './math.js';
+import _ from "lodash"
+import { cube } from "./math.js";
 function getComponent() {
-    var element = document.createElement('div');
-    var button = document.createElement('button');
-    var br = document.createElement('br');
+    var element = document.createElement("div");
+    var button = document.createElement("button");
+    let br = document.createElement("br");
     
-    button.innerHTML = 'Click me and look at the console!';
 
-    // element.innerHTML = _.join(['Hello', 'webpack'], cube());
+
+
+    button.innerHTML  = "Click me and look at the console!dd";
+    element.innerHTML = _.join(["Hello", "webpack"], cube())
+
     element.appendChild(br);
     element.appendChild(button);
+    printMe()
     // button.onclick = e => import(/* webpackChunkName: "print" */ './print').then(module => {
     //     var print = module.default;
     //     print();
     // });
-
+    console.log("ddd");
+    
+    
     return element;
 
 }

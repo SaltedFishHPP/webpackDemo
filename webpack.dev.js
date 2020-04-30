@@ -3,15 +3,18 @@ const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
 const webpack = require('webpack');
 // const StyleLintPlugin = require('stylelint-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = merge(common, {
     devtool: 'inline-source-map',
-    mode: 'development',
     devServer: {
         hot: true,
         contentBase: './',
     },
     plugins: [
+        new HtmlWebpackPlugin({
+            title: 'development'
+        }),
         new webpack.NamedModulesPlugin(), // 查看要修补(patch)的依赖-查看更改的文件
         new webpack.HotModuleReplacementPlugin(),
         // new StyleLintPlugin({
@@ -24,12 +27,10 @@ module.exports = merge(common, {
                 enforce: 'pre',
                 test: /\.(js|vue)$/,
                 loader: 'eslint-loader',
-                exclude: /node_modules/
-            },
-            {
-                test: /\.(js|vue)$/,
                 exclude: /node_modules/,
-                loader: 'babel-loader',
+                options: {
+
+                }
             },
             {
                 test: /\.css$/, // 根据正则表达式，来确定应该查找哪些文件
