@@ -19,8 +19,7 @@ module.exports = merge(common, {
         minimize: true,
         minimizer: [
             new TerserPlugin({
-              test: /\.js(\?.*)?$/i,
-              sourceMap: true
+              test: /\.js(\?.*)?$/i
             })
         ],
         // 防止生成的bundle引入的模块重复

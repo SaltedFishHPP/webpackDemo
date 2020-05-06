@@ -4,8 +4,10 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin') // 添加vue-loader
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
+  resolve: { alias: { 'vue': 'vue/dist/vue.js' } },
   entry: {
     app: './src/main.js',
+    // app: './src/webpack/index.js'
   },
   plugins: [
     new VueLoaderPlugin(), // 引入vue-loader
@@ -14,7 +16,8 @@ module.exports = {
   })
   ],
   output: {
-    filename: process.env.NODE_ENV === 'production' ? 'js/[name].[chunkhash].js' : 'js/[name].[hash].js', // chunkhash不可与热更新一起使用
+    // js/[name].[chunkhash].js
+    filename: process.env.NODE_ENV === 'production' ? '[name].[chunkhash].js' : '[name].[hash].js', // chunkhash不可与热更新一起使用
     chunkFilename: '[name].bundle.js', // 决定非入口 chunk 的名称
     path: path.resolve(__dirname, 'dist'),
     publicPath: process.env.NODE_ENV === 'production' ? './' : '/' // package定义NODE_ENV时不能有空格：set NODE_ENV=development&&
@@ -53,20 +56,23 @@ module.exports = {
       {
         test: /\.css$/,
         use: [
-          process.env.NODE_ENV !== 'production'
-            ? 'vue-style-loader'
-            : MiniCssExtractPlugin.loader,
-          'css-loader',
+          'vue-style-loader',
+          'css-loader'
+          // process.env.NODE_ENV !== 'production'
+          //   ? 'vue-style-loader'
+          //   : MiniCssExtractPlugin.loader,
+          // 'css-loader',
         ],
       },
       {
           test: /\.less$/,
           use: [
-            process.env.NODE_ENV !== 'production'
-              ? 'vue-style-loader'
-              : MiniCssExtractPlugin.loader,
-              'css-loader',
-              'less-loader',
+            // process.env.NODE_ENV !== 'production'
+            //   ? 'vue-style-loader'
+            //   : MiniCssExtractPlugin.loader,
+            'vue-style-loader',
+            'css-loader',
+            'less-loader',
           ]
       },
     ]
