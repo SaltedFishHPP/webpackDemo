@@ -12,7 +12,8 @@ module.exports = {
   output: {
     filename: process.env.NODE_ENV === 'production' ? '[name].[chunkhash].js' : '[name].[hash].js', // chunkhash不可与热更新一起使用
     chunkFilename: '[name].bundle.js', // 决定非入口 chunk 的名称
-    path: process.env.NODE_ENV === 'production' ? path.resolve(__dirname, 'dist') : path.resolve(__dirname,'../')
+    // path: process.env.NODE_ENV === 'production' ? path.resolve(__dirname, 'dist') : path.resolve(__dirname,'../')
+    path: path.resolve(__dirname, 'dist')
   },
   module: {
     rules: [
@@ -23,7 +24,7 @@ module.exports = {
       // 它会应用到普通的 `.js` 文件
       // 以及 `.vue` 文件中的 `<script>` 块
       {
-        test: /\.(js|vue)$/,
+        test: /\.js$/,
         use: [
           'babel-loader'
         ],

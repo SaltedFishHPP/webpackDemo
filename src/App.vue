@@ -21,10 +21,11 @@ export default {
 };
 // }
 </script>
-<style lang="less">
-.container{
+<style >
+/* lang="less" */
+ /* .container{ */
     p{
         color: red
     }
-}
+ /* } */
 </style>
