@@ -3,8 +3,19 @@ const path = require('path');
 const VueLoaderPlugin = require('vue-loader/lib/plugin') // 添加vue-loader
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
+function resolve (dir) {
+  return path.join(__dirname, '..', dir)
+}
+
 module.exports = {
-  resolve: { alias: { 'vue': 'vue/dist/vue.js' } },
+  resolve: {
+    extensions: ['.js', '.vue', '.json'],
+    alias: {
+      'vue$': 'vue/dist/vue.esm.js',
+      '@': resolve('src'),
+      'static': path.resolve(__dirname, '../static'),
+    }
+  },
   entry: {
     app: './src/main.js',
     // app: './src/webpack/index.js'
@@ -12,12 +23,11 @@ module.exports = {
   plugins: [
     new VueLoaderPlugin(), // 引入vue-loader
     new MiniCssExtractPlugin({
-      filename: 'style.css'
+      filename: 'static/style/style.css'
   })
   ],
   output: {
-    // js/[name].[chunkhash].js
-    filename: process.env.NODE_ENV === 'production' ? '[name].[chunkhash].js' : '[name].[hash].js', // chunkhash不可与热更新一起使用
+    filename: process.env.NODE_ENV === 'production' ? 'static/js/[name].[chunkhash].js' : 'static/js/[name].[hash].js', // chunkhash不可与热更新一起使用
     chunkFilename: '[name].bundle.js', // 决定非入口 chunk 的名称
     path: path.resolve(__dirname, 'dist'),
     publicPath: process.env.NODE_ENV === 'production' ? './' : '/' // package定义NODE_ENV时不能有空格：set NODE_ENV=development&&
@@ -43,34 +53,46 @@ module.exports = {
       {
           test: /\.(png|svg|jpg|gif)$/,
           use: [
-              'file-loader'
-          ]
+            {
+                loader: 'file-loader',
+                options: {
+                    limit: 10240,
+                    name:"static/imgs/[name].[ext]",
+                    esModule: false
+                }
+            }
+          ],
+          
       },
       {
           test: /\.(woff|woff2|eot|ttf|otf)$/,
           use: [
-              'file-loader'
+            {
+                loader: 'file-loader',
+                options: {
+                  limit: 10240,
+                  name:"static/fonts/[name].[ext]",
+                  esModule: false
+              }
+            }
           ]
       },
       // 提取css
       {
         test: /\.css$/,
         use: [
-          'vue-style-loader',
-          'css-loader'
-          // process.env.NODE_ENV !== 'production'
-          //   ? 'vue-style-loader'
-          //   : MiniCssExtractPlugin.loader,
-          // 'css-loader',
+          process.env.NODE_ENV !== 'production'
+            ? 'vue-style-loader'
+            : MiniCssExtractPlugin.loader,
+          'css-loader',
         ],
       },
       {
           test: /\.less$/,
           use: [
-            // process.env.NODE_ENV !== 'production'
-            //   ? 'vue-style-loader'
-            //   : MiniCssExtractPlugin.loader,
-            'vue-style-loader',
+            process.env.NODE_ENV !== 'production'
+              ? 'vue-style-loader'
+              : MiniCssExtractPlugin.loader,
             'css-loader',
             'less-loader',
           ]

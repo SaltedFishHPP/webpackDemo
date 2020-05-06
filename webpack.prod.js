@@ -11,8 +11,10 @@ module.exports = merge(common, {
     mode: 'production',
     plugins: [
         new CleanWebpackPlugin(),
+        // 提供生成的index.html模板
         new HtmlWebpackPlugin({
-            title: 'productionPage'
+            title: 'productionPage',
+            template: 'index.html',
         }),
     ],
     optimization: {

@@ -1,5 +1,6 @@
 <template>
     <div id="app" class="container">
+        <img src="./assets/img/page.png">
         <p class="p-test">{{ greeting }} world!!!</p>
     </div>
 </template>
@@ -25,8 +26,5 @@ export default {
     .p-test{
         color: red
     }
-}
-.p-test{
-    color: blue
 }
 </style>
