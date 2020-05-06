@@ -44,7 +44,7 @@ module.exports = {
         // 一定要使用分号
         // "semi": ["error", "always"],
         //空行最多不能超过2行
-        "no-multiple-empty-lines": [{ "max": 2 } ],
-        "no-console":[{ "allow": ["warn", "error"] }]
+        // "no-multiple-empty-lines": [{ "max": 2 } ],
+        // "no-console":[{ "allow": ["warn", "error"] }]
     }
 };

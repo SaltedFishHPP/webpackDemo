@@ -1,10 +1,9 @@
 <template>
     <div id="app" class="container">
-        <p>{{ greeting }} world!</p>
+        <p class="p-test">{{ greeting }} world!!!</p>
     </div>
 </template>
 <script>
-// module.exports= {
 export default {
     components: {},
     props: {},
@@ -18,14 +17,15 @@ export default {
     created() {},
     mounted() {},
     methods: {},
-};
-// }
+}
 </script>
-<style >
-/* lang="less" */
- /* .container{ */
-    p{
+<style lang="less">
+.container{ 
+    .p-test{
         color: red
     }
- /* } */
+}
+.p-test{
+    color: blue
+}
 </style>

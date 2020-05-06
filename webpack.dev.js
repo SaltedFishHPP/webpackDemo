@@ -1,4 +1,5 @@
 // 开发环境
+const path = require('path');
 const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
 const webpack = require('webpack');
@@ -9,7 +10,7 @@ module.exports = merge(common, {
     devtool: 'inline-source-map',
     devServer: {
         hot: true,
-        contentBase: './',
+        contentBase: './src/main.js',
     },
     plugins: [
         new HtmlWebpackPlugin({
@@ -26,39 +27,13 @@ module.exports = merge(common, {
     module:{
         rules:[
             {
+                // 预处理
                 enforce: 'pre',
                 test: /\.(js|vue)$/,
                 loader: 'eslint-loader',
                 exclude: /node_modules/,
-                options: {
-
-                }
-            },
-            {
-                test: /\.css$/, // 根据正则表达式，来确定应该查找哪些文件
-                use: [ // 将其提供给指定的 loader (style-loader 和 css-loader)
-                    'style-loader',
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            // 开启 CSS Modules
-                            modules: true,
-                            // 自定义生成的类名
-                            // localIdentName: '[local]_[hash:base64:8]'
-                        }
-                    },
-                ],
-            },
-            {
-                test: /\.less$/,
-                use: [
-                    'less-loader',
-                    'vue-style-loader',
-                    {
-                        loader: 'css-loader',
-                        options: { modules: true }
-                    },
-                ]
+                // 指定检查的目录
+                include: [path.resolve(__dirname, 'src')]
             },
         ]
     }
