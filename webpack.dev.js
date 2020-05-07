@@ -11,6 +11,7 @@ module.exports = merge(common, {
     devServer: {
         hot: true,
         contentBase: './src/main.js',
+        host: 'localhost'
     },
     plugins: [
         new HtmlWebpackPlugin({
