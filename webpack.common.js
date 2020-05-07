@@ -4,6 +4,7 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin') // 添加vue-loader
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
+  // 路径别名
   resolve: {
     extensions: ['.js', '.vue', '.json'],
     alias: {
