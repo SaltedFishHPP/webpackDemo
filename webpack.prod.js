@@ -1,10 +1,8 @@
 // 生产环境
-const path = require('path');
 const merge = require('webpack-merge');
 const TerserPlugin = require('terser-webpack-plugin'); // 压缩js
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const webpack = require('webpack');
 
 const common = require('./webpack.common.js');
 
@@ -24,14 +22,8 @@ module.exports = merge(common, {
         minimizer: [
             new TerserPlugin({
                 test: /\.js(\?.*)?$/i,
-                // cache: true, // 是否缓存
-                // include: [path.resolve(__dirname, 'src')],
             })
         ],
-
-        // test?, include?, exclude?, chunkFilter?, cache?, cacheKeys?, parallel?, sourceMap?, minify?, terserOptions?, extractComments?, warningsFilter? 
-
-
         // 防止生成的bundle引入的模块重复
         // splitChunks: {
         //     cacheGroups: { // 自定义组
@@ -51,6 +43,6 @@ module.exports = merge(common, {
                 chunks: 'initial'
               }
             }
-          }
+        }
     },
 });

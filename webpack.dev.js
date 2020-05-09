@@ -1,5 +1,5 @@
 // 开发环境
-const path = require('path');
+// const path = require('path');
 const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
 const webpack = require('webpack');
@@ -27,15 +27,15 @@ module.exports = merge(common, {
     ],
     module:{
         rules:[
-            {
-                // 预处理
-                enforce: 'pre',
-                test: /\.(js|vue)$/,
-                loader: 'eslint-loader',
-                exclude: /node_modules/,
-                // 指定检查的目录
-                include: [path.resolve(__dirname, 'src')]
-            },
+            // {
+            //     // 预处理
+            //     enforce: 'pre',
+            //     test: /\.(js|vue)$/,
+            //     loader: 'eslint-loader',
+            //     exclude: /node_modules/,
+            //     // 指定检查的目录
+            //     include: [path.resolve(__dirname, 'src')]
+            // },
         ]
     }
 });

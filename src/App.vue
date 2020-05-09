@@ -16,10 +16,12 @@ export default {
     components: { home },
     props: {},
     data() {
+
+
         return {
             imgs: imgs,
             imgs2: imgs2,
-            greeting: "Hello"
+            greeting: "Hello",
         };
     },
     computed: {},
