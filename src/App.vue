@@ -3,7 +3,7 @@
         <img src="./assets/img/page.png">
         <img :src="imgs" alt="">
         <img :src="imgs2" alt="">
-        <p class="p-test">{{ greeting }} world!!!</p>
+        <p class="p-test">{{ greeting }} world!ddd!!</p>
         <home></home>
     </div>
 </template>

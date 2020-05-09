@@ -20,7 +20,7 @@ module.exports = {
     new VueLoaderPlugin(), // 引入vue-loader
     new MiniCssExtractPlugin({
       filename: 'static/style/style.css'
-  })
+    }),
   ],
   output: {
     filename: process.env.NODE_ENV === 'production' ? 'static/js/[name].[chunkhash].js' : 'static/js/[name].[hash].js', // chunkhash不可与热更新一起使用
