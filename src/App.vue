@@ -16,8 +16,6 @@ export default {
     components: { home },
     props: {},
     data() {
-
-
         return {
             imgs: imgs,
             imgs2: imgs2,
@@ -27,6 +25,10 @@ export default {
     computed: {},
     watch: {},
     created() {
+  app = 1
+      console.log(11,'???')
+
+        
     },
     mounted() {},
     methods: {},

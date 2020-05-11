@@ -30,15 +30,15 @@ module.exports = {
   },
   module: {
     rules: [
-      {
-        // 预处理
-        enforce: 'pre',
-        test: /\.(js|vue)$/,
-        loader: 'eslint-loader',
-        exclude: /node_modules/,
-        // 指定检查的目录
-        include: [path.resolve(__dirname, 'src')]
-      },
+      // {
+      //   // 预处理
+      //   enforce: 'pre',
+      //   test: /\.(js|vue)$/,
+      //   loader: 'eslint-loader',
+      //   // exclude: /node_modules/,
+      //   // 指定检查的目录
+      //   include: [path.resolve(__dirname, 'src')]
+      // },
       {
         test: /\.vue$/,
         loader: 'vue-loader'
@@ -67,7 +67,6 @@ module.exports = {
                 }
             }
           ],
-          
       },
       {
           test: /\.(woff|woff2|eot|ttf|otf)$/,
