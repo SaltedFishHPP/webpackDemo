@@ -1,5 +1,5 @@
 // 公用配置
-const path = require('path');
+const path = require('path')
 const VueLoaderPlugin = require('vue-loader/lib/plugin') // 添加vue-loader
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
@@ -9,18 +9,18 @@ module.exports = {
     extensions: ['.js', '.vue', '.json'],
     alias: {
       '@': path.resolve(__dirname, 'src'),
-      'static': path.resolve(__dirname, 'static'),
+      static: path.resolve(__dirname, 'static')
     }
   },
   entry: {
-    app: './src/main.js',
+    app: './src/main.js'
     // app: './src/webpack/index.js'
   },
   plugins: [
     new VueLoaderPlugin(), // 引入vue-loader
     new MiniCssExtractPlugin({
       filename: 'static/style/style.css'
-    }),
+    })
   ],
   output: {
     filename: process.env.NODE_ENV === 'production' ? 'static/js/[name].[chunkhash].js' : 'static/js/[name].[hash].js', // chunkhash不可与热更新一起使用
@@ -56,30 +56,30 @@ module.exports = {
         )
       },
       {
-          test: /\.(png|svg|jpg|gif)$/,
-          use: [
-            {
-                loader: 'file-loader',
-                options: {
-                    limit: 10240,
-                    name:"static/imgs/[name].[ext]",
-                    esModule: false
-                }
+        test: /\.(png|svg|jpg|gif)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              limit: 10240,
+              name: 'static/imgs/[name].[ext]',
+              esModule: false
             }
-          ],
+          }
+        ]
       },
       {
-          test: /\.(woff|woff2|eot|ttf|otf)$/,
-          use: [
-            {
-                loader: 'file-loader',
-                options: {
-                  limit: 10240,
-                  name:"static/fonts/[name].[ext]",
-                  esModule: false
-              }
+        test: /\.(woff|woff2|eot|ttf|otf)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              limit: 10240,
+              name: 'static/fonts/[name].[ext]',
+              esModule: false
             }
-          ]
+          }
+        ]
       },
       // 提取css
       {
@@ -88,22 +88,22 @@ module.exports = {
           process.env.NODE_ENV !== 'production'
             ? 'vue-style-loader'
             : MiniCssExtractPlugin.loader,
-          'css-loader',
-        ],
+          'css-loader'
+        ]
       },
       {
-          test: /\.less$/,
-          use: [
-            process.env.NODE_ENV !== 'production'
-              ? 'vue-style-loader'
-              : MiniCssExtractPlugin.loader,
-            'css-loader',
-            'less-loader',
-          ]
-      },
+        test: /\.less$/,
+        use: [
+          process.env.NODE_ENV !== 'production'
+            ? 'vue-style-loader'
+            : MiniCssExtractPlugin.loader,
+          'css-loader',
+          'less-loader'
+        ]
+      }
     ]
   },
   optimization: {
 
   }
-};
+}
