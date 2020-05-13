@@ -1,11 +1,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import pageB from '@/pages/pageB'
-import pageA from '@/pages/pageA'
 import home from '@/pages/home'
 
 Vue.use(VueRouter)
+
 const routes = [
   // 设置默认路径页面
   {
@@ -22,16 +21,12 @@ const routes = [
       {
         name: '页面A',
         path: '/pageA',
-        component: pageA
-
-        // redirect: to => {
-        //   return '@/pages/pageA'
-        // }
+        component: resolve => require(['@/pages/pageA'], resolve) // 路由懒加载
       },
       {
         name: '页面B',
         path: '/pageB',
-        component: pageB
+        component: resolve => require(['@/pages/pageB'], resolve)
       }
     ]
   }

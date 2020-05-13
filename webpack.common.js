@@ -14,7 +14,6 @@ module.exports = {
   },
   entry: {
     app: './src/main.js'
-    // app: './src/webpack/index.js'
   },
   plugins: [
     new VueLoaderPlugin(), // 引入vue-loader
@@ -28,17 +27,12 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     publicPath: process.env.NODE_ENV === 'production' ? './' : '/' // package定义NODE_ENV时不能有空格：set NODE_ENV=development&&
   },
+  devServer: {
+    // 使用vue-router history 模式时，提供的路径时虚拟路径，需要自己配置默认路劲已显示指定路由
+    historyApiFallback: true
+  },
   module: {
     rules: [
-      // {
-      //   // 预处理
-      //   enforce: 'pre',
-      //   test: /\.(js|vue)$/,
-      //   loader: 'eslint-loader',
-      //   // exclude: /node_modules/,
-      //   // 指定检查的目录
-      //   include: [path.resolve(__dirname, 'src')]
-      // },
       {
         test: /\.vue$/,
         loader: 'vue-loader'
