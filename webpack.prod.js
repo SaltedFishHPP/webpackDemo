@@ -29,8 +29,9 @@ module.exports = merge(common, {
       cacheGroups: {
         vendors: {
           test: /[\\/]node_modules[\\/]/,
-          name: 'static/js/vendors',
-          chunks: 'initial'
+          name: 'vendors', // 公共部分输出文件的名称，公共文件已定义非入口的bundle位置，这里直接显示名称即可
+          // minChunks: 2, // 至少有几个入口相同时判定其为重复
+          chunks: 'initial' // 模式 “initial”, “async” 和 “all” -- 优化时只选择初始的chunks，所需要的chunks 还是所有chunks 。
         }
       }
     }

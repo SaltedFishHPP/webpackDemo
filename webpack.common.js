@@ -23,12 +23,12 @@ module.exports = {
   ],
   output: {
     filename: process.env.NODE_ENV === 'production' ? 'static/js/[name].[chunkhash].js' : 'static/js/[name].[hash].js', // chunkhash不可与热更新一起使用
-    chunkFilename: '[name].bundle.js', // 决定非入口 chunk 的名称
+    chunkFilename: 'static/js/[name].bundle.js', // 决定非入口 chunk 的名称
     path: path.resolve(__dirname, 'dist'),
     publicPath: process.env.NODE_ENV === 'production' ? './' : '/' // package定义NODE_ENV时不能有空格：set NODE_ENV=development&&
   },
   devServer: {
-    // 使用vue-router history 模式时，提供的路径时虚拟路径，需要自己配置默认路劲已显示指定路由
+    // 使用vue-router history 模式时，提供的路径是虚拟路径，需要自己配置默认路径已显示指定路由
     historyApiFallback: true
   },
   module: {

@@ -1,8 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import home from '@/pages/home'
-
 Vue.use(VueRouter)
 
 const routes = [
@@ -16,12 +14,12 @@ const routes = [
   {
     name: '首页',
     path: '/home',
-    component: home,
+    component: resolve => require(['@/pages/home'], resolve), // 路由懒加载,
     children: [
       {
         name: '页面A',
         path: '/pageA',
-        component: resolve => require(['@/pages/pageA'], resolve) // 路由懒加载
+        component: resolve => require(['@/pages/pageA'], resolve)
       },
       {
         name: '页面B',
@@ -30,12 +28,11 @@ const routes = [
       }
     ]
   }
-
 ]
 
-const router = new VueRouter({
-  mode: 'history', // 将路由模式切换为history（去除#），需要设置默认路径页面
+const routerConfig = process.env.NODE_ENV === 'development' ? require('./dev.js') : require('./prod.js')
+
+export default new VueRouter({
+  mode: routerConfig.mode,
   routes // (缩写) 相当于 routes: routes
 })
-
-export default router

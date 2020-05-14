@@ -7,6 +7,7 @@
 
 <script>
 import imgs from '@/assets/img/page.png'
+
 export default {
   data () {
     return {
